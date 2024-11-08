@@ -1,0 +1,20 @@
+/* source key position labels */
+#include "zmk-helpers/key-labels/42.h"
+
+/* map Zen's extra keys */
+#define X_LT  &kp TAB       // top row, left
+#define X_LM  &kp ESC       // middle row, left
+#define X_LB  &mo SS        // bottom row, left
+#define X_LH  &kp DEL       // thumb row, left
+#define X_RT  &kp MINUS     // top row, right
+#define X_RM  &kp APOS      // middle row, right
+#define X_RB  &kp EQUAL     // bottom row, right
+#define X_RH  &kp BSPC      // thumb row, right
+/* activate bluetooth */
+#define CONFIG_WIRELESS
+
+/* source the main keymap */
+#include "base-qwerty.keymap"
+
+/* use 5-column layout for Zen */
+//ZMK_APPLY_MATRIX_TRANSFORM(five_column_transform)
