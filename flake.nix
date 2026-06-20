@@ -28,11 +28,6 @@
         dts-format = pkgs.callPackage ./nix/dts-format.nix {
           dts-linter = dts-linter.packages.${system}.dev;
         };
-        libatomic = pkgs.runCommand "libatomic" {} ''
-          mkdir -p $out/lib
-          cp -d ${pkgs.stdenv.cc.cc.lib}/lib/libatomic.so* $out/lib/
-        '';
-
       in {
         default = pkgs.mkShellNoCC {
           packages =
@@ -68,8 +63,13 @@
           shellHook = ''
             export ZMK_BUILD_DIR=$(pwd)/.build;
             export ZMK_SRC_DIR=$(pwd)/zmk/app;
+          '' + (if pkgs.stdenv.isLinux then
+            let libatomic = pkgs.runCommand "libatomic" {} ''
+              mkdir -p $out/lib
+              cp -d ${pkgs.stdenv.cc.cc.lib}/lib/libatomic.so* $out/lib/
+            ''; in ''
             export LD_LIBRARY_PATH="${libatomic}/lib";
-          '';
+          '' else "");
         };
       }
     );
