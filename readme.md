@@ -349,7 +349,7 @@ for many shells.)
 
 The build environment packages
 [keymap-drawer](https://github.com/caksoylar/keymap-drawer). `just draw` parses
-`base.keymap` and draws it to `draw/base.svg`.
+`corne.keymap` and draws it to `draw/base.svg`.
 
 #### Devicetree formatter (experimental)
 
